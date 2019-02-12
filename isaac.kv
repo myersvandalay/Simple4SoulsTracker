@@ -1,0 +1,49 @@
+#: import randrange random
+
+<CustButton@Button>:
+    font_size: 32
+<IsaacGridLayout>:
+    id: Isaac
+    d6: d6
+    orientation: 'vertical'
+    BoxLayout:
+        Spinner:
+            text: "4"
+            values: "1", "2", "3", "4", "5", "6", "7", "8"
+            on_text: mohp.text = self.text
+        Spinner:
+            text: "2"
+            values: "1", "2", "3", "4"
+            on_text: plhp.text = self.value
+    BoxLayout:
+        Label:
+            text: "Monster"
+        Label:
+            text: "Player"
+
+
+    BoxLayout:
+        Button:
+            id: mohp
+            on_release: self.text = str(int(self.text) - 1)
+            text: "4"
+        Button:
+            id: plhp
+            on_release: self.text = str(int(self.text) - 1)
+            text: "2"
+
+    BoxLayout:
+        Button:
+            on_release: mohp.text = str(int(mohp.text) + 1)
+            text: "Heal"
+        Button:
+            on_release: plhp.text = str(int(plhp.text) + 1)
+            text: "Heal"
+    BoxLayout:
+        Button:
+            text: "Roll D6"
+            on_release: d6.text = root.roll()
+        Button:
+            id: d6
+            background_color: (1.0, 0.0, .1, 1.0)
+            text: ""
